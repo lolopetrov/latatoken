@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LATA Token — Aluminum-inspired meme token on Polygon</title>
+  <meta name="description" content="LATA is a Polygon-based meme token inspired by aluminum recycling and circular economy. Total supply 100,000,000 LATA.">
+  <link rel="icon" href="favicon.png">
+  <style>
+    :root {
+      --bg: #0e1116;
+      --accent: #e63946;
+      --text: #f1f1f1;
+      --muted: #aaa;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+    img.logo {
+      width: 180px;
+      height: auto;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    p.desc {
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+    .btn {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      color: white;
+      background: var(--accent);
+      transition: 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    footer {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="logo.png" alt="LATA Logo" class="logo">
+
+  <h1>$LATA Token</h1>
+  <p class="desc">
+    Aluminum-inspired meme token on <strong>Polygon</strong>.  
+    Promoting circular economy, recycling, and community-driven burns.  
+    Total supply: <strong>100,000,000 LATA</strong> — No fees, no auto burns.
+  </p>
+
+  <div class="card">
+    <p><strong>Network:</strong> Polygon (MATIC)</p>
+    <p><strong>Contract:</strong> 
+      <a href="https://polygonscan.com/address/0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2" target="_blank" style="color:var(--accent);text-decoration:none;">
+        0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2
+      </a>
+    </p>
+  </div>
+
+  <a href="https://polygonscan.com/token/0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2" target="_blank" class="btn">View on PolygonScan</a>
+  <a href="#" class="btn" id="addToken">Add to MetaMask</a>
+
+  <footer>© 2025 LATA Project — Aluminum-powered meme economy</footer>
+
+  <script>
+    // Añadir token LATA a MetaMask
+    document.getElementById('addToken').addEventListener('click', async () => {
+      if (window.ethereum) {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_watchAsset',
+            params: {
+              type: 'ERC20',
+              options: {
+                address: '0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2',
+                symbol: 'LATA',
+                decimals: 18,
+                image: 'https://latatoken.com/logo.png'
+              },
+            },
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        alert('Please install MetaMask to add LATA.');
+      }
+    });
+  </script>
+
+</body>
+</html>
