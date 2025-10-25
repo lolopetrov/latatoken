@@ -11,7 +11,7 @@
   <a href="https://polygonscan.com/address/0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2">
     <img src="https://img.shields.io/badge/network-Polygon-blueviolet?style=for-the-badge&logo=polygon" alt="Polygon"/>
   </a>
-  <a href="https://lolopetrov.github.io/latatoken/">
+  <a href="https://latatoken.com">
     <img src="https://img.shields.io/badge/website-live-brightgreen?style=for-the-badge&logo=google-chrome" alt="Website"/>
   </a>
 </p>
@@ -55,9 +55,9 @@
 
 ## 🔗 Useful Links
 
-- 🌐 [Website (GitHub Pages)](https://lolopetrov.github.io/latatoken/)
+- 🌐 [Official Website](https://latatoken.com)
 - 📊 [PolygonScan Contract](https://polygonscan.com/token/0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2)
-- 🦊 [Add to MetaMask](https://polygonscan.com/token/0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2#tokenInfo)
+- 🦊 [Add to MetaMask](https://latatoken.com)
 - 💬 [Community Telegram (soon)](#)
 - 💱 [QuickSwap Pair (coming soon)](#)
 - 🧾 [Whitepaper (soon)](#)
@@ -96,7 +96,7 @@ Maintained by [@lolopetrov](https://github.com/lolopetrov)
 ---
 
 <p align="center">
-  <img src="favicon.png" width="64" alt="favicon"/>
+  <img src="favicon-64.png" width="64" alt="favicon"/>
   <br/>
   <sub>Light, shiny, and circular — just like aluminum.</sub>
 </p>
