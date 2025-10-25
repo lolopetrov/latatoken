@@ -82,6 +82,57 @@
     View on PolygonScan
   </a>
 
+  
+  <!-- pega aquí -->
+  <section style="margin-top:2.5rem; background:#14151a; padding:1.5rem 2rem; border-radius:18px; max-width:420px; box-shadow:0 0 15px rgba(255,59,48,0.2);">
+    <h2 style="color:#ffd700; font-size:1.3rem; margin-bottom:0.5rem;">💎 Token Details</h2>
+    <p style="color:#ccc; font-size:0.95rem; line-height:1.6;">
+      <strong>Name:</strong> LATA<br>
+      <strong>Symbol:</strong> $LATA<br>
+      <strong>Network:</strong> Polygon<br>
+      <strong>Total Supply:</strong> 100,000,000 LATA<br>
+      <strong>Contract:</strong> 
+      <a href="https://polygonscan.com/token/0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2" style="color:#ff3b30;text-decoration:none;" target="_blank">
+        0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2
+      </a>
+    </p>
+
+    <button id="addTokenBtn" style="margin-top:1rem; background:#ff3b30; border:none; padding:0.6rem 1rem; border-radius:30px; color:white; font-weight:600; cursor:pointer;">
+      🦊 Add $LATA to MetaMask
+    </button>
+
+    <script>
+      async function addToken() {
+        try {
+          const wasAdded = await window.ethereum.request({
+            method: 'wallet_watchAsset',
+            params: {
+              type: 'ERC20',
+              options: {
+                address: '0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2',
+                symbol: 'LATA',
+                decimals: 18,
+                image: 'https://www.latatoken.com/favicon-64.png'
+              },
+            },
+          });
+          if (wasAdded) {
+            alert('✅ $LATA has been added to your MetaMask!');
+          } else {
+            alert('❌ Token addition canceled.');
+          }
+        } catch (error) {
+          console.error(error);
+          alert('⚠️ MetaMask not available or request failed.');
+        }
+      }
+
+      document.getElementById('addTokenBtn').addEventListener('click', addToken);
+    </script>
+  </section>
+  <!-- hasta aquí -->
+
+
   <footer>
     Built with ❤️ by <a href="https://github.com/lolopetrov">lolopetrov</a> · <a href="https://github.com/lolopetrov/latatoken.com">GitHub Repo</a>
   </footer>
