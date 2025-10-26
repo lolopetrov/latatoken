@@ -77,6 +77,40 @@
 
   <!-- 🔗 Botones -->
   <a href="https://polygonscan.com/token/0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF" class="btn" target="_blank">🔍 View on PolygonScan</a>
+<!-- Pool Info (DexScreener API) -->
+<section id="pool-info" style="margin-top:2.5rem; background:#14151a; padding:1.5rem 2rem; border-radius:18px; max-width:420px; box-shadow:0 0 15px rgba(255,59,48,0.2);">
+  <h2 style="color:#ffd700; font-size:1.3rem; margin-bottom:0.5rem;">📊 LATA / POL Pool</h2>
+  <p id="lata-price" style="color:#ccc; font-size:0.95rem; line-height:1.6;">Loading price...</p>
+</section>
+
+<script>
+  async function loadLataData() {
+    const url = "https://api.dexscreener.com/latest/dex/pairs/polygon/0xB8fa4da0239422954F4B50D9b7C27C0B49d91E44";
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      if (!data.pair) throw new Error("Pair not found yet");
+
+      const p = data.pair;
+      const priceUsd = parseFloat(p.priceUsd).toFixed(8);
+      const liquidityUsd = parseFloat(p.liquidity.usd).toLocaleString();
+      const volume24h = parseFloat(p.volume.h24).toLocaleString();
+
+      document.getElementById("lata-price").innerHTML = `
+        💲 <strong>1 LATA = $${priceUsd}</strong><br>
+        💧 Liquidity: $${liquidityUsd}<br>
+        📈 24h Volume: $${volume24h}
+      `;
+    } catch (err) {
+      document.getElementById("lata-price").innerHTML = "⏳ Waiting for pool data...";
+    }
+  }
+
+  loadLataData();
+  setInterval(loadLataData, 60000); // refresh every 60s
+</script>
+
+  
   <a href="https://dexscreener.com/polygon/0xB8fa4da0239422954" class="btn" target="_blank">📊 View $LATA/POL on DexScreener</a>
   <a href="https://quickswap.exchange/#/swap?inputCurrency=MATIC&outputCurrency=0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF" class="btn" target="_blank">⚡ Trade on QuickSwap</a>
 
