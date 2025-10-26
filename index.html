@@ -75,137 +75,72 @@
     Transparent. Community-driven. Recyclable.
   </p>
 
-  <!-- 🔗 Botones -->
   <a href="https://polygonscan.com/token/0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF" class="btn" target="_blank">🔍 View on PolygonScan</a>
-<!-- Pool Info (DexScreener API) -->
-<section id="pool-info" style="margin-top:2.5rem; background:#14151a; padding:1.5rem 2rem; border-radius:18px; max-width:420px; box-shadow:0 0 15px rgba(255,59,48,0.2);">
-  <h2 style="color:#ffd700; font-size:1.3rem; margin-bottom:0.5rem;">📊 LATA / POL Pool</h2>
-  <p id="lata-price" style="color:#ccc; font-size:0.95rem; line-height:1.6;">Loading price...</p>
-</section>
 
-<script>
-  async function loadLataData() {
-    const url = "https://api.dexscreener.com/latest/dex/pairs/polygon/0xB8fa4da0239422954F4B50D9b7C27C0B49d91E44";
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      if (!data.pair) throw new Error("Pair not found yet");
+  <!-- Pool Info -->
+  <section id="pool-info">
+    <h2>📊 LATA / POL Pool</h2>
+    <p id="lata-price" style="color:#ccc;">Loading price...</p>
+  </section>
 
-      const p = data.pair;
-      const priceUsd = parseFloat(p.priceUsd).toFixed(8);
-      const liquidityUsd = parseFloat(p.liquidity.usd).toLocaleString();
-      const volume24h = parseFloat(p.volume.h24).toLocaleString();
-
-      document.getElementById("lata-price").innerHTML = `
-        💲 <strong>1 LATA = $${priceUsd}</strong><br>
-        💧 Liquidity: $${liquidityUsd}<br>
-        📈 24h Volume: $${volume24h}
-      `;
-    } catch (err) {
-      document.getElementById("lata-price").innerHTML = "⏳ Waiting for pool data...";
+  <script>
+    async function loadLataData() {
+      const url = "https://api.dexscreener.com/latest/dex/pairs/polygon/0xB8fa4da0239422954F4B50D9b7C27C0B49d91E44";
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        if (!data.pair) throw new Error("Pair not found yet");
+        const p = data.pair;
+        document.getElementById("lata-price").innerHTML = `
+          💲 <strong>1 LATA = $${parseFloat(p.priceUsd).toFixed(8)}</strong><br>
+          💧 Liquidity: $${parseFloat(p.liquidity.usd).toLocaleString()}<br>
+          📈 24h Volume: $${parseFloat(p.volume.h24).toLocaleString()}
+        `;
+      } catch {
+        document.getElementById("lata-price").innerHTML = "⏳ Waiting for pool data...";
+      }
     }
-  }
+    loadLataData();
+    setInterval(loadLataData, 60000);
+  </script>
 
-  loadLataData();
-  setInterval(loadLataData, 60000); // refresh every 60s
-</script>
-
-  
   <a href="https://dexscreener.com/polygon/0xB8fa4da0239422954" class="btn" target="_blank">📊 View $LATA/POL on DexScreener</a>
   <a href="https://quickswap.exchange/#/swap?inputCurrency=MATIC&outputCurrency=0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF" class="btn" target="_blank">⚡ Trade on QuickSwap</a>
 
-  <!-- 💎 Token Details -->
-  <section>
-    <h2>💎 Token Details</h2>
-    <p>
-      <strong>Name:</strong> LATA<br>
-      <strong>Symbol:</strong> $LATA<br>
-      <strong>Network:</strong> Polygon<br>
-      <strong>Total Supply:</strong> 100,000,000 LATA<br>
-      <strong>Contract:</strong> 
-      <a href="https://polygonscan.com/token/0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF" style="color:#ff3b30;" target="_blank">
-        0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF
-      </a>
+  <!-- Liquidity Lock -->
+  <section style="max-width:520px;">
+    <h2>🔒 Liquidity / Token Lock</h2>
+    <p style="color:#ccc;">
+      <strong>Locked via:</strong> PinkLock (PinkSale)<br>
+      <strong>Amount:</strong> 30,000,000 LATA<br>
+      <strong>Token:</strong>
+      <a href="https://polygonscan.com/token/0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF" target="_blank" style="color:#ff3b30;">0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF</a><br>
+      <strong>Custody Contract:</strong>
+      <a href="https://polygonscan.com/address/0x6C9A0D8B1c7a95a323d744dE30cf027694710633" target="_blank" style="color:#ff3b30;">0x6C9A0D8B1c7a95a323d744dE30cf027694710633</a>
     </p>
-    <button id="addTokenBtn" style="margin-top:1rem;background:#ff3b30;border:none;padding:0.6rem 1rem;border-radius:30px;color:white;font-weight:600;cursor:pointer;">
-      🦊 Add $LATA to MetaMask
-    </button>
-  </section>
 
-  <!-- 📈 Pool Info -->
-  <section>
-    <h2>📈 Pool Info (LATA/POL)</h2>
-    <div id="poolData">Loading live data...</div>
-    <div id="updateTime"></div>
-  </section>
-
-
-  <!-- ==== LATA Liquidity Lock (PinkSale) ==== -->
-<section style="margin-top:2.5rem; background:#14151a; padding:1.5rem 2rem; border-radius:18px; max-width:520px; box-shadow:0 0 15px rgba(255,59,48,0.2); text-align:left;">
-  <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
-    <span style="font-size:1.4rem;">🔒</span>
-    <h2 style="color:#ffd700; font-size:1.25rem; margin:0;">Liquidity / Token Lock</h2>
-  </div>
-
-  <p style="color:#ccc; font-size:0.95rem; line-height:1.6; margin:0 0 12px;">
-    <strong>Locked via:</strong> PinkLock (PinkSale)<br>
-    <strong>Amount:</strong> <span id="lockAmount">30,000,000 LATA</span><br>
-    <strong>Token:</strong>
-    <a href="https://polygonscan.com/token/0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF"
-       target="_blank" style="color:#ff3b30; text-decoration:none;">
-      0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF
-    </a><br>
-    <strong>Custody Contract:</strong>
-    <a href="https://polygonscan.com/address/0x6C9A0D8B1c7a95a323d744dE30cf027694710633"
-       target="_blank" style="color:#ff3b30; text-decoration:none;">
-      0x6C9A0D8B1c7a95a323d744dE30cf027694710633
-    </a>
-  </p>
-
-  <div style="display:flex; flex-wrap:wrap; gap:10px; margin:14px 0;">
-    <!-- Cuando tengas el link público de PinkLock, pégalo en el href de abajo -->
-    <a id="pinkLockLink" href="#" target="_blank"
-       style="background:#20222a; color:#fff; padding:0.6rem 1rem; border-radius:10px; text-decoration:none; font-weight:600;">
-      📄 View Lock (PinkSale)
-    </a>
-    <a href="https://polygonscan.com/tx/0x6ce555b70d4651d4bbf8e7e2477f8008e47dd5ae9a8f1ac2342262003154a9e9" target="_blank"
-       style="background:#20222a; color:#fff; padding:0.6rem 1rem; border-radius:10px; text-decoration:none; font-weight:600;">
-      🔗 Lock Tx
-    </a>
-  </div>
-
-  <div id="unlockWrap" style="margin-top:10px; background:#0f1015; padding:12px 14px; border-radius:12px;">
-    <div style="color:#ffd700; font-weight:700; margin-bottom:6px;">⏳ Unlock Countdown</div>
-    <div id="unlockLine" style="color:#ccc; font-size:0.95rem;">
-      Set unlock date to show countdown…
+    <div style="display:flex; gap:10px; margin:14px 0;">
+      <a id="pinkLockLink" href="https://www.pinksale.finance/pinklock/polygon/record/1006352" target="_blank"
+         style="background:#20222a; color:#fff; padding:0.6rem 1rem; border-radius:10px; text-decoration:none; font-weight:600;">
+        📄 View Lock (PinkSale)
+      </a>
+      <a href="https://polygonscan.com/tx/0x6ce555b70d4651d4bbf8e7e2477f8008e47dd5ae9a8f1ac2342262003154a9e9" target="_blank"
+         style="background:#20222a; color:#fff; padding:0.6rem 1rem; border-radius:10px; text-decoration:none; font-weight:600;">
+        🔗 Lock Tx
+      </a>
     </div>
-  </div>
 
-  <script>
-    // 👉 CONFIGURA AQUÍ CUANDO TENGAS LA FECHA EXACTA DE DESBLOQUEO DE PINKSALE
-    // Ejemplo: '2027-10-26T17:45:00Z' (24 meses desde hoy, AJÚSTALO al dato real de PinkLock)
-    const unlockDateUTC = ''; // <-- pon aquí la fecha en ISO si la sabes
+    <div id="unlockWrap" style="background:#0f1015; padding:12px 14px; border-radius:12px;">
+      <div style="color:#ffd700; font-weight:700;">⏳ Unlock Countdown</div>
+      <div id="unlockLine" style="color:#ccc;"></div>
+    </div>
 
-    // (Opcional) cuando PinkSale te muestre la página pública del lock, pega la URL aquí:
-   const pinkLockPublicURL = 'https://www.pinksale.finance/pinklock/polygon/record/1006352';
-
-
-    if (pinkLockPublicURL) {
+    <script>
+      const unlockDateUTC = '2027-10-26T17:45:00Z';
+      const pinkLockPublicURL = 'https://www.pinksale.finance/pinklock/polygon/record/1006352';
       document.getElementById('pinkLockLink').setAttribute('href', pinkLockPublicURL);
-    } else {
-      document.getElementById('pinkLockLink').textContent = '📄 View Lock (soon)';
-      document.getElementById('pinkLockLink').style.opacity = '0.7';
-      document.getElementById('pinkLockLink').style.pointerEvents = 'none';
-    }
 
-    function fmt(n){ return new Intl.NumberFormat('en-US').format(n); }
-
-    // Si quieres que el texto de cantidad venga de JS:
-    // document.getElementById('lockAmount').textContent = fmt(30000000) + ' LATA';
-
-    // Countdown
-    const lineEl = document.getElementById('unlockLine');
-    if (unlockDateUTC) {
+      const lineEl = document.getElementById('unlockLine');
       const target = new Date(unlockDateUTC).getTime();
       const iv = setInterval(() => {
         const now = Date.now();
@@ -221,62 +156,11 @@
         const s = Math.floor((diff % (1000*60)) / 1000);
         lineEl.textContent = `Unlocks in ${d}d ${h}h ${m}m ${s}s  •  (${new Date(target).toUTCString()})`;
       }, 1000);
-    } else {
-      lineEl.textContent = 'Add unlock date to enable the countdown.';
-    }
-  </script>
-</section>
-<!-- ==== /LATA Liquidity Lock ==== -->
-
+    </script>
+  </section>
 
   <footer>
     Built with ❤️ by <a href="https://github.com/lolopetrov">lolopetrov</a> · <a href="https://github.com/lolopetrov/latatoken.com">GitHub Repo</a>
   </footer>
-
-  <script>
-    // 🦊 Add Token Button
-    async function addToken() {
-      try {
-        const wasAdded = await window.ethereum.request({
-          method: 'wallet_watchAsset',
-          params: {
-            type: 'ERC20',
-            options: {
-              address: '0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF',
-              symbol: 'LATA',
-              decimals: 18,
-              image: 'https://latatoken.com/logo.png'
-            },
-          },
-        });
-        alert(wasAdded ? '✅ $LATA added to MetaMask!' : '❌ Cancelled.');
-      } catch (e) {
-        alert('⚠️ MetaMask not available.');
-      }
-    }
-    document.getElementById('addTokenBtn').addEventListener('click', addToken);
-
-    // 📊 Pool Data (DexScreener API)
-    const poolUrl = "https://api.dexscreener.com/latest/dex/pairs/polygon/0xB8fa4da0239422954F4B50D9b7C27C0B49d91E44";
-
-    async function updatePoolData() {
-      try {
-        const res = await fetch(poolUrl);
-        const data = await res.json();
-        const p = data.pair;
-        document.getElementById('poolData').innerHTML = `
-          💰 <strong>Price:</strong> $${parseFloat(p.priceUsd).toFixed(8)}<br>
-          💧 <strong>Liquidity:</strong> $${Math.round(p.liquidity.usd).toLocaleString()}<br>
-          📊 <strong>24h Volume:</strong> $${Math.round(p.volume.h24).toLocaleString()}<br>
-          🔁 <strong>Transactions (24h):</strong> ${p.txns.h24.buys + p.txns.h24.sells}
-        `;
-        document.getElementById('updateTime').textContent = "Last update: " + new Date().toLocaleTimeString();
-      } catch {
-        document.getElementById('poolData').textContent = "⚠️ Unable to fetch live data.";
-      }
-    }
-    updatePoolData();
-    setInterval(updatePoolData, 60000);
-  </script>
 </body>
 </html>
