@@ -53,6 +53,8 @@
       border-radius: 30px;
       font-weight: 600;
       transition: background 0.2s;
+      display: inline-block;
+      margin: 0.5rem 0;
     }
     a.btn:hover {
       background: #e02b23;
@@ -69,21 +71,19 @@
     }
   </style>
 
-  <!-- Open Graph / Social Preview -->
+  <!-- Open Graph / Social -->
   <meta property="og:title" content="$LATA Token — Aluminum-inspired Meme Token on Polygon">
   <meta property="og:description" content="$LATA — Aluminum-inspired meme token on Polygon. 100,000,000 supply. Transparent, community-driven, and recyclable.">
   <meta property="og:image" content="https://latatoken.com/logo.png">
   <meta property="og:url" content="https://latatoken.com">
   <meta property="og:type" content="website">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="$LATA Token — Aluminum-inspired Meme Token on Polygon">
   <meta name="twitter:description" content="$LATA — Transparent. Community-driven. Recyclable.">
   <meta name="twitter:image" content="https://latatoken.com/logo.png">
-
-  
 </head>
+
 <body>
   <img src="logo.png" alt="$LATA logo" class="logo">
   <h1>$LATA Token</h1>
@@ -93,12 +93,16 @@
     Transparent. Community-driven. Recyclable.
   </p>
 
-  <a href="https://polygonscan.com/token/0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2" class="btn" target="_blank">
+  <!-- Botones principales -->
+  <a href="https://polygonscan.com/token/0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF" class="btn" target="_blank">
     View on PolygonScan
   </a>
 
-  
-  <!-- pega aquí -->
+  <a href="https://dexscreener.com/polygon/0xB8fa4da0239422954" class="btn" target="_blank">
+    📊 View $LATA/POL Chart on DexScreener
+  </a>
+
+  <!-- Sección Token Details -->
   <section style="margin-top:2.5rem; background:#14151a; padding:1.5rem 2rem; border-radius:18px; max-width:420px; box-shadow:0 0 15px rgba(255,59,48,0.2);">
     <h2 style="color:#ffd700; font-size:1.3rem; margin-bottom:0.5rem;">💎 Token Details</h2>
     <p style="color:#ccc; font-size:0.95rem; line-height:1.6;">
@@ -107,8 +111,8 @@
       <strong>Network:</strong> Polygon<br>
       <strong>Total Supply:</strong> 100,000,000 LATA<br>
       <strong>Contract:</strong> 
-      <a href="https://polygonscan.com/token/0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2" style="color:#ff3b30;text-decoration:none;" target="_blank">
-        0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2
+      <a href="https://polygonscan.com/token/0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF" style="color:#ff3b30;text-decoration:none;" target="_blank">
+        0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF
       </a>
     </p>
 
@@ -124,10 +128,10 @@
             params: {
               type: 'ERC20',
               options: {
-                address: '0x90A89254488d843cDfb55FD2Ba3f8d3C2df135e2',
+                address: '0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF',
                 symbol: 'LATA',
                 decimals: 18,
-                image: 'https://www.latatoken.com/favicon-64.png'
+                image: 'https://latatoken.com/logo.png'
               },
             },
           });
@@ -145,8 +149,6 @@
       document.getElementById('addTokenBtn').addEventListener('click', addToken);
     </script>
   </section>
-  <!-- hasta aquí -->
-
 
   <footer>
     Built with ❤️ by <a href="https://github.com/lolopetrov">lolopetrov</a> · <a href="https://github.com/lolopetrov/latatoken.com">GitHub Repo</a>
