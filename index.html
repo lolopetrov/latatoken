@@ -54,11 +54,9 @@
       font-weight: 600;
       transition: background 0.2s;
       display: inline-block;
-      margin: 0.5rem 0;
+      margin: 0.3rem 0;
     }
-    a.btn:hover {
-      background: #e02b23;
-    }
+    a.btn:hover { background: #e02b23; }
     footer {
       position: absolute;
       bottom: 15px;
@@ -73,7 +71,7 @@
 
   <!-- Open Graph / Social -->
   <meta property="og:title" content="$LATA Token — Aluminum-inspired Meme Token on Polygon">
-  <meta property="og:description" content="$LATA — Aluminum-inspired meme token on Polygon. 100,000,000 supply. Transparent, community-driven, and recyclable.">
+  <meta property="og:description" content="$LATA — Transparent. Community-driven. Recyclable.">
   <meta property="og:image" content="https://latatoken.com/logo.png">
   <meta property="og:url" content="https://latatoken.com">
   <meta property="og:type" content="website">
@@ -93,17 +91,21 @@
     Transparent. Community-driven. Recyclable.
   </p>
 
-  <!-- Botones principales -->
+  <!-- 🔗 Botones principales -->
   <a href="https://polygonscan.com/token/0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF" class="btn" target="_blank">
-    View on PolygonScan
+    🔍 View on PolygonScan
   </a>
 
   <a href="https://dexscreener.com/polygon/0xB8fa4da0239422954" class="btn" target="_blank">
-    📊 View $LATA/POL Chart on DexScreener
+    📊 View $LATA/POL on DexScreener
   </a>
 
-  <!-- Sección Token Details -->
-  <section style="margin-top:2.5rem; background:#14151a; padding:1.5rem 2rem; border-radius:18px; max-width:420px; box-shadow:0 0 15px rgba(255,59,48,0.2);">
+  <a href="https://quickswap.exchange/#/swap?inputCurrency=MATIC&outputCurrency=0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF" class="btn" target="_blank">
+    ⚡ Trade on QuickSwap
+  </a>
+
+  <!-- 💎 Token Details -->
+  <section style="margin-top:2rem; background:#14151a; padding:1.5rem 2rem; border-radius:18px; max-width:420px; box-shadow:0 0 15px rgba(255,59,48,0.2);">
     <h2 style="color:#ffd700; font-size:1.3rem; margin-bottom:0.5rem;">💎 Token Details</h2>
     <p style="color:#ccc; font-size:0.95rem; line-height:1.6;">
       <strong>Name:</strong> LATA<br>
@@ -145,7 +147,6 @@
           alert('⚠️ MetaMask not available or request failed.');
         }
       }
-
       document.getElementById('addTokenBtn').addEventListener('click', addToken);
     </script>
   </section>
