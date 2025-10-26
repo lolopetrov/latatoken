@@ -88,25 +88,36 @@
   </section>
 
   <script>
-    async function loadLataData() {
-      const url = "https://api.dexscreener.com/latest/dex/pairs/polygon/0xB8fa4da0239422954F4B50D9b7C27C0B49d91E44";
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        if (!data.pair) throw new Error("Pair not found yet");
-        const p = data.pair;
-        document.getElementById("lata-price").innerHTML = `
-          💲 <strong>1 LATA = $${parseFloat(p.priceUsd).toFixed(8)}</strong><br>
-          💧 Liquidity: $${parseFloat(p.liquidity.usd).toLocaleString()}<br>
-          📈 24h Volume: $${parseFloat(p.volume.h24).toLocaleString()}
-        `;
-      } catch {
-        document.getElementById("lata-price").innerHTML = "⏳ Waiting for pool data...";
-      }
+  async function loadLataData() {
+    const url = "https://api.dexscreener.com/latest/dex/pairs/polygon/0xB8fa4da0239422954F4B50D9b7C27C0B49d91E44";
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if (!data.pair) throw new Error("Pool not found yet");
+      const p = data.pair;
+
+      const priceUsd = parseFloat(p.priceUsd).toFixed(8);
+      const liquidityUsd = parseFloat(p.liquidity.usd).toLocaleString();
+      const volume24h = parseFloat(p.volume.h24).toLocaleString();
+      const txns = p.txns.h24.buys + p.txns.h24.sells;
+
+      document.getElementById("lata-price").innerHTML = `
+        💲 <strong>1 LATA = $${priceUsd}</strong><br>
+        💧 Liquidity: $${liquidityUsd}<br>
+        📈 24h Volume: $${volume24h}<br>
+        🔁 24h Trades: ${txns}
+      `;
+    } catch (err) {
+      document.getElementById("lata-price").innerHTML = "⏳ Waiting for pool data...";
     }
-    loadLataData();
-    setInterval(loadLataData, 60000);
-  </script>
+  }
+
+  // Carga inicial y refresco cada minuto
+  loadLataData();
+  setInterval(loadLataData, 60000);
+</script>
+
 
   <a href="https://dexscreener.com/polygon/0xB8fa4da0239422954" class="btn" target="_blank">📊 View $LATA/POL on DexScreener</a>
   <a href="https://quickswap.exchange/#/swap?inputCurrency=MATIC&outputCurrency=0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF" class="btn" target="_blank">⚡ Trade on QuickSwap</a>
