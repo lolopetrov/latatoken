@@ -139,6 +139,95 @@
     <div id="updateTime"></div>
   </section>
 
+
+  <!-- ==== LATA Liquidity Lock (PinkSale) ==== -->
+<section style="margin-top:2.5rem; background:#14151a; padding:1.5rem 2rem; border-radius:18px; max-width:520px; box-shadow:0 0 15px rgba(255,59,48,0.2); text-align:left;">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+    <span style="font-size:1.4rem;">🔒</span>
+    <h2 style="color:#ffd700; font-size:1.25rem; margin:0;">Liquidity / Token Lock</h2>
+  </div>
+
+  <p style="color:#ccc; font-size:0.95rem; line-height:1.6; margin:0 0 12px;">
+    <strong>Locked via:</strong> PinkLock (PinkSale)<br>
+    <strong>Amount:</strong> <span id="lockAmount">30,000,000 LATA</span><br>
+    <strong>Token:</strong>
+    <a href="https://polygonscan.com/token/0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF"
+       target="_blank" style="color:#ff3b30; text-decoration:none;">
+      0x93c58ff491Bc99137f303C7BAE30164E66CaFDdF
+    </a><br>
+    <strong>Custody Contract:</strong>
+    <a href="https://polygonscan.com/address/0x6C9A0D8B1c7a95a323d744dE30cf027694710633"
+       target="_blank" style="color:#ff3b30; text-decoration:none;">
+      0x6C9A0D8B1c7a95a323d744dE30cf027694710633
+    </a>
+  </p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:10px; margin:14px 0;">
+    <!-- Cuando tengas el link público de PinkLock, pégalo en el href de abajo -->
+    <a id="pinkLockLink" href="#" target="_blank"
+       style="background:#20222a; color:#fff; padding:0.6rem 1rem; border-radius:10px; text-decoration:none; font-weight:600;">
+      📄 View Lock (PinkSale)
+    </a>
+    <a href="https://polygonscan.com/tx/0x6ce555b70d4651d4bbf8e7e2477f8008e47dd5ae9a8f1ac2342262003154a9e9" target="_blank"
+       style="background:#20222a; color:#fff; padding:0.6rem 1rem; border-radius:10px; text-decoration:none; font-weight:600;">
+      🔗 Lock Tx
+    </a>
+  </div>
+
+  <div id="unlockWrap" style="margin-top:10px; background:#0f1015; padding:12px 14px; border-radius:12px;">
+    <div style="color:#ffd700; font-weight:700; margin-bottom:6px;">⏳ Unlock Countdown</div>
+    <div id="unlockLine" style="color:#ccc; font-size:0.95rem;">
+      Set unlock date to show countdown…
+    </div>
+  </div>
+
+  <script>
+    // 👉 CONFIGURA AQUÍ CUANDO TENGAS LA FECHA EXACTA DE DESBLOQUEO DE PINKSALE
+    // Ejemplo: '2027-10-26T17:45:00Z' (24 meses desde hoy, AJÚSTALO al dato real de PinkLock)
+    const unlockDateUTC = ''; // <-- pon aquí la fecha en ISO si la sabes
+
+    // (Opcional) cuando PinkSale te muestre la página pública del lock, pega la URL aquí:
+    const pinkLockPublicURL = ''; // p.ej. 'https://www.pinksale.finance/#/pinklock/123?...'
+
+    if (pinkLockPublicURL) {
+      document.getElementById('pinkLockLink').setAttribute('href', pinkLockPublicURL);
+    } else {
+      document.getElementById('pinkLockLink').textContent = '📄 View Lock (soon)';
+      document.getElementById('pinkLockLink').style.opacity = '0.7';
+      document.getElementById('pinkLockLink').style.pointerEvents = 'none';
+    }
+
+    function fmt(n){ return new Intl.NumberFormat('en-US').format(n); }
+
+    // Si quieres que el texto de cantidad venga de JS:
+    // document.getElementById('lockAmount').textContent = fmt(30000000) + ' LATA';
+
+    // Countdown
+    const lineEl = document.getElementById('unlockLine');
+    if (unlockDateUTC) {
+      const target = new Date(unlockDateUTC).getTime();
+      const iv = setInterval(() => {
+        const now = Date.now();
+        const diff = target - now;
+        if (diff <= 0) {
+          clearInterval(iv);
+          lineEl.textContent = '🔓 Unlocked';
+          return;
+        }
+        const d = Math.floor(diff / (1000*60*60*24));
+        const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+        const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+        const s = Math.floor((diff % (1000*60)) / 1000);
+        lineEl.textContent = `Unlocks in ${d}d ${h}h ${m}m ${s}s  •  (${new Date(target).toUTCString()})`;
+      }, 1000);
+    } else {
+      lineEl.textContent = 'Add unlock date to enable the countdown.';
+    }
+  </script>
+</section>
+<!-- ==== /LATA Liquidity Lock ==== -->
+
+
   <footer>
     Built with ❤️ by <a href="https://github.com/lolopetrov">lolopetrov</a> · <a href="https://github.com/lolopetrov/latatoken.com">GitHub Repo</a>
   </footer>
@@ -167,7 +256,8 @@
     document.getElementById('addTokenBtn').addEventListener('click', addToken);
 
     // 📊 Pool Data (DexScreener API)
-    const poolUrl = "https://api.dexscreener.com/latest/dex/pairs/polygon/0xB8fa4da0239422954";
+    const poolUrl = "https://api.dexscreener.com/latest/dex/pairs/polygon/0xB8fa4da0239422954F4B50D9b7C27C0B49d91E44";
+
     async function updatePoolData() {
       try {
         const res = await fetch(poolUrl);
