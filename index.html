@@ -112,6 +112,27 @@
     <p id="lata-price" style="color:#ccc;">Loading price...</p>
   </section>
 
+  <section id="aluminum-info">
+  <h2>⚙️ Aluminum Price (Physical Market)</h2>
+  <p id="aluminum-price" style="color:#ccc;">Loading...</p>
+</section>
+
+<script>
+async function loadAluminumPrice() {
+  try {
+    const res = await fetch("https://api.metals.dev/v1/latest?api_key=demo&base=USD&symbols=ALUMINUM");
+    const data = await res.json();
+    const price = data.rates.ALUMINUM;
+    document.getElementById("aluminum-price").innerHTML = `1 metric ton = <strong>$${price.toLocaleString()} USD</strong>`;
+  } catch (err) {
+    document.getElementById("aluminum-price").innerHTML = "⏳ Unable to load price.";
+  }
+}
+loadAluminumPrice();
+setInterval(loadAluminumPrice, 3600000);
+</script>
+
+  
   <script>
   async function loadLataData() {
     const url = "https://api.dexscreener.com/latest/dex/pairs/polygon/0xB8fa4da0239422954F4B50D9b7C27C0B49d91E44";
