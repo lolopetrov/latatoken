@@ -1,0 +1,14 @@
+{
+"name": "Recogida de latas — LATA",
+"short_name": "LATA Recogida",
+"description": "Recogo latas de refrescos a domicilio — mínimo 20 kg. Pago 0,15 €/kg. Solo latas de refrescos, no de chapa.",
+"start_url": "/recogida/index.html",
+"scope": "/recogida/",
+"display": "standalone",
+"background_color": "#0b1220",
+"theme_color": "#0ea5e9",
+"icons": [
+{ "src": "/recogida/icon-192.png", "sizes": "192x192", "type": "image/png" },
+{ "src": "/recogida/icon-512.png", "sizes": "512x512", "type": "image/png" }
+]
+}
