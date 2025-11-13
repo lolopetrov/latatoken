@@ -28,15 +28,44 @@ button{background:#0ea5e9;border:0;color:#000;padding:12px 18px;border-radius:8p
 <p id="msg"></p>
 </form>
 <script>
-document.getElementById('pickupForm').addEventListener('submit', e=>{
+const form = document.getElementById('pickupForm');
+const nameEl = document.getElementById('name');
+const addressEl = document.getElementById('address');
+const weightEl = document.getElementById('weight');
+const cityEl = document.getElementById('city');
+const onlyCansEl = document.getElementById('onlyCans');
+const msgEl = document.getElementById('msg');
+
+form.addEventListener('submit', e => {
   e.preventDefault();
-  let n=name.value.trim(),a=address.value.trim(),w=parseInt(weight.value),c=city.value,o=onlyCans.checked;
-  if(!n||!a||!w||!c){msg.textContent='Completa todos los campos.';return;}
-  if(w<20){msg.textContent='El peso mínimo es 20 kg.';return;}
-  if(!o){msg.textContent='Debes confirmar que son solo latas de refrescos.';return;}
-  let texto=`Solicitud de recogida:\\nNombre: ${n}\\nDirección: ${a}\\nPeso: ${w} kg\\nCiudad: ${c}\\nSolo latas de refrescos.`;
-  window.location.href='https://wa.me/34644406602?text='+encodeURIComponent(texto);
+
+  const n = nameEl.value.trim();
+  const a = addressEl.value.trim();
+  const w = parseInt(weightEl.value);
+  const c = cityEl.value;
+  const o = onlyCansEl.checked;
+
+  if (!n || !a || !w || !c) {
+    msgEl.textContent = 'Completa todos los campos.';
+    return;
+  }
+  if (Number.isNaN(w) || w < 20) {
+    msgEl.textContent = 'El peso mínimo es 20 kg.';
+    return;
+  }
+  if (!o) {
+    msgEl.textContent = 'Debes confirmar que son solo latas de refrescos.';
+    return;
+  }
+
+  const texto =
+    `Solicitud de recogida:\n` +
+    `Nombre: ${n}\nDirección: ${a}\nPeso: ${w} kg\nCiudad: ${c}\nSolo latas de refrescos.`;
+
+  const url = 'https://wa.me/34644406602?text=' + encodeURIComponent(texto);
+  window.location.href = url;
 });
 </script>
+
 </body>
 </html>
