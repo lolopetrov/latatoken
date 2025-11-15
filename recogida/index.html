@@ -19,6 +19,10 @@ header img{
   border-radius:50%;
   box-shadow:0 0 18px rgba(255,255,255,0.15);
   margin:20px auto 10px;
+  transition:transform 0.2s ease;
+}
+header img:hover{
+  transform:scale(1.05);
 }
 h1{
   font-size:1.5em;
@@ -68,7 +72,9 @@ button:hover{
 <body>
 
 <header>
-  <img src="/assets/img/logo.png" alt="LATA logo">
+  <a href="https://www.latatoken.com">
+    <img src="/assets/img/logo.png" alt="LATA logo">
+  </a>
 </header>
 
 <h1>Recogida de latas de refrescos — desde 20 kg (0,15 €/kg)</h1>
@@ -115,19 +121,4 @@ form.addEventListener('submit', e => {
     msgEl.textContent = 'El peso mínimo es 20 kg.';
     return;
   }
-  if (!o) {
-    msgEl.textContent = 'Debes confirmar que son solo latas de refrescos.';
-    return;
-  }
-
-  const texto =
-    `Solicitud de recogida:\n` +
-    `Nombre: ${n}\nDirección: ${a}\nPeso: ${w} kg\nCiudad: ${c}\nSolo latas de refrescos.`;
-
-  const url = 'https://wa.me/34644406602?text=' + encodeURIComponent(texto);
-  window.location.href = url;
-});
-</script>
-
-</body>
-</html>
+  if (!o)
