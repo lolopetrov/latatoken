@@ -3,6 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+<!-- 🐦 Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@latatoken">
+<meta name="twitter:title" content="Recogida de latas — LATA Token">
+<meta name="twitter:description" content="♻️ Recogida de latas de refrescos en Madrid sur — gana 0,15 €/kg y apoya el reciclaje conectado a la blockchain.">
+<meta name="twitter:image" content="https://www.latatoken.com/logo.png">
+
+  
 <title>Recogida de latas — LATA</title>
 <style>
 body{
@@ -121,4 +131,19 @@ form.addEventListener('submit', e => {
     msgEl.textContent = 'El peso mínimo es 20 kg.';
     return;
   }
-  if (!o)
+    if (!o) {
+    msgEl.textContent = 'Debes confirmar que son solo latas de refrescos.';
+    return;
+  }
+
+  const texto =
+    `Solicitud de recogida:\n` +
+    `Nombre: ${n}\nDirección: ${a}\nPeso: ${w} kg\nCiudad: ${c}\nSolo latas de refrescos.`;
+
+  const url = 'https://wa.me/34644406602?text=' + encodeURIComponent(texto);
+  window.location.href = url;
+});
+</script>
+
+</body>
+</html>
