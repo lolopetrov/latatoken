@@ -88,7 +88,8 @@ button:hover{
   </a>
 </header>
 
-<h1>Recogida de latas de refrescos — desde 20 kg (0,15 €/kg)</h1>
+<h1>Recogida de latas de refrescos — zona sur y oeste de Madrid (desde 20 kg, 0,15 €/kg)</h1>
+
 <p>🚫 Solo latas de refrescos, no de chapa.</p>
 
 <form id="pickupForm">
@@ -96,11 +97,15 @@ button:hover{
   <input id="address" placeholder="Dirección completa" required>
   <input id="weight" type="number" placeholder="Peso en kg (mínimo 20)" required>
   <select id="city" required>
-    <option value="">Ciudad</option>
-    <option>Móstoles</option>
-    <option>Alcorcón</option>
-    <option>Fuenlabrada</option>
-  </select>
+  <option value="">Ciudad</option>
+  <option>Móstoles</option>
+  <option>Alcorcón</option>
+  <option>Fuenlabrada</option>
+  <option>Majadahonda</option>
+  <option>Boadilla del Monte</option>
+  <option>Pozuelo de Alarcón</option>
+</select>
+
   <label><input type="checkbox" id="onlyCans"> Confirmo que son solo latas de refrescos (no de chapa).</label>
   <button type="submit">Enviar por WhatsApp</button>
   <p id="msg"></p>
