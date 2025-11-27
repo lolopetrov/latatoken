@@ -6,13 +6,13 @@
 
 <title>Recogida de latas — LATA</title>
 
-<meta name="description" content="Recogida de latas de refrescos en el sur y oeste de Madrid — Móstoles, Alcorcón, Fuenlabrada, Majadahonda, Boadilla del Monte y Pozuelo de Alarcón. Gana 0,15 €/kg y apoya el reciclaje conectado a la blockchain.">
+<meta name="description" content="Recogida de latas de refrescos en el sur y oeste de Madrid — Móstoles, Alcorcón, Fuenlabrada, Majadahonda, Boadilla del Monte y Pozuelo de Alarcón. Gana 0,15 €/kg o recibe tokens $LATA. Reciclaje conectado a la blockchain.">
 
 <!-- 🐦 Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@latatoken">
 <meta name="twitter:title" content="Recogida de latas — LATA Token">
-<meta name="twitter:description" content="♻️ Recogida de latas de refrescos en el sur y oeste de Madrid — Móstoles, Alcorcón, Fuenlabrada, Majadahonda, Boadilla del Monte y Pozuelo de Alarcón. Gana 0,15 €/kg y apoya el reciclaje conectado a la blockchain.">
+<meta name="twitter:description" content="♻️ Recogida de latas de refrescos en el sur y oeste de Madrid — Móstoles, Alcorcón, Fuenlabrada, Majadahonda, Boadilla del Monte y Pozuelo de Alarcón. Gana 0,15 €/kg o recibe tokens $LATA.">
 <meta name="twitter:image" content="https://www.latatoken.com/assets/img/logo.png">
 
 <script type="application/ld+json">
@@ -21,7 +21,7 @@
   "@type": "LocalBusiness",
   "name": "Recogida de latas — LATA Token",
   "image": "https://www.latatoken.com/assets/img/logo.png",
-  "description": "Servicio de recogida de latas de refrescos a domicilio en el sur y oeste de Madrid — Móstoles, Alcorcón, Fuenlabrada, Majadahonda, Boadilla del Monte y Pozuelo de Alarcón. Mínimo 20 kg — pago directo 0,15 €/kg.",
+  "description": "Servicio de recogida de latas de refrescos a domicilio en el sur y oeste de Madrid — Móstoles, Alcorcón, Fuenlabrada, Majadahonda, Boadilla del Monte y Pozuelo de Alarcón. Mínimo 20 kg — pago directo 0,15 €/kg o canje en tokens $LATA.",
   "url": "https://www.latatoken.com/recogida/",
   "telephone": "+34 644 406 602",
   "areaServed": [
@@ -33,7 +33,7 @@
     { "@type": "Place", "name": "Pozuelo de Alarcón" }
   ],
   "priceRange": "€",
-  "paymentAccepted": "Cash",
+  "paymentAccepted": "Cash, Crypto",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Madrid",
@@ -113,13 +113,25 @@ footer a{color:#ffd700;text-decoration:none;}
   </a>
 </header>
 
-<h1>Recogida de latas de refrescos — zona sur y oeste de Madrid (desde 20 kg, 0,15 €/kg)</h1>
+<h1>Recogida de latas de refrescos — zona sur y oeste de Madrid (desde 20 kg)</h1>
 
 <p>♻️ Realizamos recogida a domicilio en:
 <strong>Móstoles, Alcorcón, Fuenlabrada, Majadahonda, Boadilla del Monte</strong> y <strong>Pozuelo de Alarcón</strong>.
-Gana <strong>0,15 €/kg</strong> por tus latas de refrescos y apoya una red de reciclaje conectada a la blockchain.</p>
+Puedes elegir entre recibir <strong>0,15 €/kg</strong> o <strong>tokens $LATA</strong> (1 kg = 10 $LATA).</p>
 
 <p>🚫 Solo latas de refrescos, no de chapa.</p>
+
+<!-- 💬 NUEVO FORMULARIO -->
+<h2>💬 Selecciona tu tipo de entrega</h2>
+
+<p style="max-width:500px;margin:0 auto 20px;color:#ccc;">
+  Puedes elegir recibir <strong>dinero en efectivo</strong> (0,15 €/kg) o <strong>tokens $LATA</strong> (1 kg = 10 $LATA) según tu preferencia.
+</p>
+
+<div style="text-align:left;margin-bottom:20px;">
+  <label><input type="radio" name="option" id="optA" checked> 💶 Opción A — Cobro directo 0,15 €/kg</label><br>
+  <label><input type="radio" name="option" id="optB"> 💰 Opción B — Recibir $LATA (1 kg = 10 $LATA)</label>
+</div>
 
 <form id="pickupForm">
   <input id="name" placeholder="Nombre y apellidos" required>
@@ -134,53 +146,66 @@ Gana <strong>0,15 €/kg</strong> por tus latas de refrescos y apoya una red de 
     <option>Boadilla del Monte</option>
     <option>Pozuelo de Alarcón</option>
   </select>
+
+  <div id="walletWrap" style="display:none;">
+    <input id="wallet" placeholder="Dirección Polygon (0x…)" pattern="0x[a-fA-F0-9]{40}">
+  </div>
+
+  <p id="calcResult" style="font-weight:600;color:#ffd700;text-align:center;margin:10px 0;"></p>
+
   <label><input type="checkbox" id="onlyCans"> Confirmo que son solo latas de refrescos (no de chapa).</label>
   <button type="submit">Enviar por WhatsApp</button>
   <p id="msg"></p>
 </form>
 
 <footer>
-  <p>📍 Ahora también disponible en Majadahonda, Boadilla del Monte y Pozuelo de Alarcón.</p>
+  <p>📍 Disponible también en Majadahonda, Boadilla del Monte y Pozuelo de Alarcón.</p>
   <p>Sigue el proyecto en <a href="https://x.com/latatoken" target="_blank">@latatoken</a></p>
 </footer>
 
 <script>
-const form = document.getElementById('pickupForm');
-const nameEl = document.getElementById('name');
-const addressEl = document.getElementById('address');
+const optA = document.getElementById('optA');
+const optB = document.getElementById('optB');
+const walletWrap = document.getElementById('walletWrap');
 const weightEl = document.getElementById('weight');
-const cityEl = document.getElementById('city');
-const onlyCansEl = document.getElementById('onlyCans');
+const calcResult = document.getElementById('calcResult');
+const form = document.getElementById('pickupForm');
 const msgEl = document.getElementById('msg');
 
-form.addEventListener('submit', e => {
+optA.addEventListener('change', ()=> walletWrap.style.display = optA.checked ? 'none' : 'block');
+optB.addEventListener('change', ()=> walletWrap.style.display = optB.checked ? 'block' : 'none');
+
+weightEl.addEventListener('input', ()=>{
+  const w = parseFloat(weightEl.value)||0;
+  if(w>=20){
+    if(optA.checked) calcResult.textContent = `💶 Pago estimado: ${(w*0.15).toFixed(2)} €`;
+    if(optB.checked) calcResult.textContent = `💰 Recibirás ≈ ${(w*10).toFixed(0)} $LATA`;
+  } else {
+    calcResult.textContent = '';
+  }
+});
+
+form.addEventListener('submit', e=>{
   e.preventDefault();
+  const n=name.value.trim(), a=address.value.trim(), w=parseInt(weight.value), c=city.value, o=onlyCans.checked;
+  const wallet=document.getElementById('wallet')?.value?.trim();
+  if(!n||!a||!w||!c){msgEl.textContent='Completa todos los campos.';return;}
+  if(w<20){msgEl.textContent='El peso mínimo es 20 kg.';return;}
+  if(!o){msgEl.textContent='Debes confirmar que son solo latas de refrescos.';return;}
 
-  const n = nameEl.value.trim();
-  const a = addressEl.value.trim();
-  const w = parseInt(weightEl.value);
-  const c = cityEl.value;
-  const o = onlyCansEl.checked;
-
-  if (!n || !a || !w || !c) {
-    msgEl.textContent = 'Completa todos los campos.';
-    return;
-  }
-  if (Number.isNaN(w) || w < 20) {
-    msgEl.textContent = 'El peso mínimo es 20 kg.';
-    return;
-  }
-  if (!o) {
-    msgEl.textContent = 'Debes confirmar que son solo latas de refrescos.';
-    return;
+  let texto;
+  if(optA.checked){
+    texto=`Solicitud Opción A:\nNombre: ${n}\nDirección: ${a}\nPeso: ${w} kg\nCiudad: ${c}\nPago 0,15 €/kg.`;
+  }else{
+    texto=`Solicitud Opción B ($LATA):\nNombre: ${n}\nDirección: ${a}\nPeso: ${w} kg\nCiudad: ${c}\nWallet: ${wallet}\nConversión 1 kg = 10 $LATA.`;
   }
 
-  const texto =
-    `Solicitud de recogida:\n` +
-    `Nombre: ${n}\nDirección: ${a}\nPeso: ${w} kg\nCiudad: ${c}\nSolo latas de refrescos.`;
-
-  const url = 'https://wa.me/34644406602?text=' + encodeURIComponent(texto);
-  window.location.href = url;
+  msgEl.style.color = '#9eff9e';
+  msgEl.textContent = '✅ Tu solicitud ha sido enviada por WhatsApp.';
+  
+  setTimeout(()=>{
+    window.location.href='https://wa.me/34644406602?text='+encodeURIComponent(texto);
+  },1000);
 });
 </script>
 
