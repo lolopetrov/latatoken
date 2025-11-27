@@ -21,4 +21,213 @@
   "@type": "LocalBusiness",
   "name": "Recogida de latas — LATA Token",
   "image": "https://www.latatoken.com/assets/img/logo.png",
-  "description": "Servicio de recogid
+  "description": "Servicio de recogida de latas de refrescos a domicilio en Móstoles, Alcorcón, Fuenlabrada, Majadahonda, Boadilla del Monte y Pozuelo de Alarcón. 20 kg mínimo — pago 0,15 €/kg o tokens $LATA.",
+  "url": "https://www.latatoken.com/recogida/",
+  "telephone": "+34 644 406 602",
+  "areaServed": [
+    { "@type": "Place", "name": "Móstoles" },
+    { "@type": "Place", "name": "Alcorcón" },
+    { "@type": "Place", "name": "Fuenlabrada" },
+    { "@type": "Place", "name": "Majadahonda" },
+    { "@type": "Place", "name": "Boadilla del Monte" },
+    { "@type": "Place", "name": "Pozuelo de Alarcón" }
+  ],
+  "paymentAccepted": "Cash, Crypto"
+}
+</script>
+
+<style>
+body{
+  font-family:sans-serif;
+  background:#0b1220;
+  color:#eee;
+  margin:0;
+  padding:20px;
+  text-align:center;
+}
+header img{
+  width:120px;
+  border-radius:50%;
+  box-shadow:0 0 18px rgba(255,255,255,0.15);
+  margin:20px auto 10px;
+}
+h1{font-size:1.6em;margin:10px 0;}
+p{max-width:520px;margin:0 auto 20px;line-height:1.55;}
+
+form{max-width:480px;margin:0 auto;text-align:left;}
+
+input,select{
+  width:100%;
+  margin:6px 0 14px;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #333;
+  background:#111;
+  color:#fff;
+}
+
+button{
+  background:#25D366;
+  border:0;
+  color:#fff;
+  padding:14px 18px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+  width:100%;
+  font-size:1em;
+}
+button:hover{background:#20b85a;}
+
+#msg{margin-top:10px;color:#ffbaba;font-size:0.95em;text-align:center;}
+
+.radioWrap{
+  text-align:center;
+  margin:25px 0;
+}
+
+.radioOption{
+  margin:10px 0;
+  font-size:1.05em;
+}
+
+footer{
+  margin-top:40px;
+  font-size:0.9em;
+  color:#aaa;
+  border-top:1px solid #222;
+  padding-top:20px;
+}
+footer a{color:#ffd700;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="https://www.latatoken.com">
+    <img src="/assets/img/logo.png" alt="LATA logo">
+  </a>
+</header>
+
+<h1>Recogida de latas de refrescos — zona sur y oeste de Madrid (mínimo 20 kg)</h1>
+
+<p>♻️ Realizamos recogida a domicilio en:
+<strong>Móstoles, Alcorcón, Fuenlabrada, Majadahonda, Boadilla del Monte</strong> y <strong>Pozuelo de Alarcón</strong>.
+Puedes elegir entre recibir <strong>0,15 €/kg</strong> o <strong>tokens $LATA</strong> (1 kg = 10 $LATA).</p>
+
+<p>🚫 Solo latas de refrescos, no de chapa.</p>
+
+<!-- 💡 DAR LA LATA -->
+<div style="
+  background:#111;
+  padding:25px 28px;
+  border-radius:12px;
+  max-width:620px;
+  margin:40px auto;
+  box-shadow:0 0 20px rgba(0,0,0,0.35);
+  line-height:1.55;
+">
+  <h2 style="color:#ffd700;margin-bottom:15px;">💡 “Dar la lata” es ingreso neto</h2>
+  <ul style="text-align:left;max-width:580px;margin:0 auto;color:#ddd;">
+    <li style="margin-bottom:12px;">Guardar o recoger 20 kg de latas = <strong>1,5 €</strong>. Pequeño gesto, valor real.</li>
+    <li style="margin-bottom:12px;">1 € entre 900 desaparece. 1 € solo —el que nadie mueve— marca la diferencia.</li>
+    <li style="margin-bottom:12px;"><strong>Lo pequeño suma</strong>: cada bolsa de latas es ingreso directo o $LATA.</li>
+    <li><strong>Cada kilo cuenta</strong>. Cada kilo vuelve en forma de valor.</li>
+  </ul>
+</div>
+
+<!-- 💬 Opciones -->
+<h2>💬 Selecciona tu tipo de entrega</h2>
+
+<p style="max-width:500px;margin:0 auto 20px;color:#ccc;">
+  Elige entre <strong>dinero en efectivo</strong> (0,15 €/kg) o <strong>$LATA</strong> (1 kg = 10 $LATA).
+</p>
+
+<div class="radioWrap">
+  <div class="radioOption">
+    <label><input type="radio" name="option" id="optA" checked> 💶 Opción A — Cobro directo 0,15 €/kg</label>
+  </div>
+  <div class="radioOption">
+    <label><input type="radio" name="option" id="optB"> 💰 Opción B — Recibir $LATA (1 kg = 10 $LATA)</label>
+  </div>
+</div>
+
+<form id="pickupForm">
+  <input id="name" placeholder="Nombre y apellidos" required>
+  <input id="address" placeholder="Dirección completa" required>
+  <input id="weight" type="number" placeholder="Peso en kg (mínimo 20)" required>
+
+  <select id="city" required>
+    <option value="">Ciudad</option>
+    <option>Móstoles</option>
+    <option>Alcorcón</option>
+    <option>Fuenlabrada</option>
+    <option>Majadahonda</option>
+    <option>Boadilla del Monte</option>
+    <option>Pozuelo de Alarcón</option>
+  </select>
+
+  <div id="walletWrap" style="display:none;">
+    <input id="wallet" placeholder="Dirección Polygon (0x…)" pattern="0x[a-fA-F0-9]{40}">
+  </div>
+
+  <p id="calcResult" style="font-weight:600;color:#ffd700;text-align:center;margin:10px 0;"></p>
+
+  <label><input type="checkbox" id="onlyCans"> Confirmo que son solo latas de refrescos.</label>
+  <button type="submit">Enviar por WhatsApp</button>
+  <p id="msg"></p>
+</form>
+
+<footer>
+  <p>📍 También disponible en Majadahonda, Boadilla del Monte y Pozuelo de Alarcón.</p>
+  <p>Sigue el proyecto en <a href="https://x.com/latatoken" target="_blank">@latatoken</a></p>
+</footer>
+
+<script>
+const optA = document.getElementById('optA');
+const optB = document.getElementById('optB');
+const walletWrap = document.getElementById('walletWrap');
+const weightEl = document.getElementById('weight');
+const calcResult = document.getElementById('calcResult');
+const form = document.getElementById('pickupForm');
+const msgEl = document.getElementById('msg');
+
+optA.addEventListener('change', ()=> walletWrap.style.display='none');
+optB.addEventListener('change', ()=> walletWrap.style.display='block');
+
+weightEl.addEventListener('input', ()=>{
+  const w=parseFloat(weightEl.value)||0;
+  if(w>=20){
+    if(optA.checked) calcResult.textContent=`💶 Pago estimado: ${(w*0.15).toFixed(2)} €`;
+    if(optB.checked) calcResult.textContent=`💰 Recibirás ≈ ${(w*10).toFixed(0)} $LATA`;
+  } else calcResult.textContent='';
+});
+
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+
+  const n=name.value.trim(), a=address.value.trim(), w=parseInt(weight.value),
+        c=city.value, o=onlyCans.checked,
+        wallet=document.getElementById('wallet')?.value?.trim();
+
+  if(!n||!a||!w||!c){msgEl.textContent='Completa todos los campos.';return;}
+  if(w<20){msgEl.textContent='El mínimo son 20 kg.';return;}
+  if(!o){msgEl.textContent='Debes confirmar que son latas de refrescos.';return;}
+
+  let texto;
+  if(optA.checked){
+    texto=`Solicitud Opción A:\nNombre: ${n}\nDirección: ${a}\nPeso: ${w} kg\nCiudad: ${c}\nPago 0,15 €/kg.`;
+  } else {
+    texto=`Solicitud Opción B ($LATA):\nNombre: ${n}\nDirección: ${a}\nPeso: ${w} kg\nCiudad: ${c}\nWallet: ${wallet}\nConversión 1 kg = 10 $LATA.`;
+  }
+
+  msgEl.style.color='#9eff9e';
+  msgEl.textContent='Enviando solicitud...';
+
+  setTimeout(()=> window.location.href='https://wa.me/34644406602?text='+encodeURIComponent(texto), 600);
+});
+</script>
+
+</body>
+</html>
